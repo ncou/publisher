@@ -7,11 +7,12 @@ namespace Chiron\Publisher;
 use ArrayIterator;
 use Chiron\Container\SingletonInterface;
 use Chiron\Filesystem\Filesystem;
-use Chiron\Core\Exception\PublishException;
+use Chiron\Publisher\Exception\PublisherException;
 use Countable;
 use IteratorAggregate;
 use Transversable;
 
+////https://github.com/hyperf/hyperf/blob/2aa967ed6b0f55c4f8a09e0e69a85d5a4bf72f27/src/devtool/src/VendorPublishCommand.php
 //https://github.com/top-think/framework/blob/6.0/src/think/console/command/VendorPublish.php#L35
 
 // TODO : ajouter la gestion des tags.
@@ -81,7 +82,7 @@ final class Publisher //implements SingletonInterface
             } elseif ($this->filesystem->isFile($from)) {
                 $this->publishFile($from, $to);
             } else {
-                throw new PublishException(sprintf('Can\'t locate path: "%s".', $from));
+                throw new PublisherException(sprintf('Can\'t locate path: "%s".', $from));
             }
         }
     }
