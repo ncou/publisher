@@ -71,7 +71,7 @@ final class Publisher //implements SingletonInterface
         $this->publishes[$source] = $destination;
     }
 
-    // TODO : renommer en publishAll ou publishItems ???
+    // TODO : Passer par référence un 2eme paramétre sous forme de tableau (ou null) et on ajoutera dans ce tableau le reportDetail avec le contenu du status cad les fichiers copiés ['from' => xxx, 'to' => xxxx, 'type' => xxx] ca nous servira dans la command publish pour afficher le détails de ce qui a été copié !!!! eventuellement si on n'est pas en mode verbose on indiquera seulement le nombre de lignes dans le tableau qui correspondra à la copie de X éléments !!!
     public function publish(bool $force): void
     {
         $this->force = $force;
@@ -93,6 +93,7 @@ final class Publisher //implements SingletonInterface
      * @param string $from
      * @param string $to
      */
+    // TODO : passer cette méthode en private !!!
     public function publishDirectory(string $from, string $to): void
     {
         if (! $this->filesystem->exists($to) || $this->force) {
@@ -114,6 +115,7 @@ final class Publisher //implements SingletonInterface
      * @param string $from
      * @param string $to
      */
+    // TODO : passer cette méthode en private !!!
     public function publishFile(string $from, string $to): void
     {
         if (! $this->filesystem->exists($to) || $this->force) {
