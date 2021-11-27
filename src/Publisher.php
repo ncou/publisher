@@ -17,6 +17,7 @@ use Transversable;
 
 // TODO : ajouter la gestion des tags.
 //https://github.com/laravelista/lumen-vendor-publish/blob/master/src/VendorPublishCommand.php
+//https://github.com/laravel/framework/blob/6662f49fe83d0898cddb8d1beee5c1a507a92514/src/Illuminate/Foundation/Console/VendorPublishCommand.php
 //https://github.com/illuminate/support/blob/master/ServiceProvider.php#L370
 
 // TODO : créer un package dédié qui serait nommé chiron/publisher et ajouter dans le fichier composer de core, une dépendance vers ce package chiron/publisher ???? (penser à virer le "implements SingletonInterface" pour éviter une dépendance vers le composant chiron/container)
@@ -82,7 +83,7 @@ final class Publisher //implements SingletonInterface
             } elseif ($this->filesystem->isFile($from)) {
                 $this->publishFile($from, $to);
             } else {
-                throw new PublisherException(sprintf('Can\'t locate path: "%s".', $from));
+                throw new PublisherException(sprintf('Can\'t locate path: "%s".', $from)); // TODO : lever plutot une improperlyconfiguredException (seulement dans le cas ou on reporte cette classe dans le package chiron/core !!!!)
             }
         }
     }
